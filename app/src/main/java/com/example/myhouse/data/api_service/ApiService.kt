@@ -1,7 +1,7 @@
 package com.example.myhouse.data.api_service
 
-import com.example.myhouse.data.model.camera.BaseResponseCamera
-import com.example.myhouse.data.model.door.BaseResponseDoor
+import com.example.myhouse.data.network.model.camera.BaseResponseCamera
+import com.example.myhouse.data.network.model.door.BaseResponseDoor
 import retrofit2.Response
 import retrofit2.http.GET
 

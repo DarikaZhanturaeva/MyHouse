@@ -6,22 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.myhouse.data.model.camera.Camera
+import com.example.myhouse.data.network.model.camera.Camera
 import com.example.myhouse.databinding.ItemCameraBinding
 
-class CameraAdapter : ListAdapter<Camera, CameraAdapter.CameraViewHolder>(CameraItemCallback()) {
+class CameraAdapter : ListAdapter<Camera, CameraAdapter.CameraViewHolder>(DoorItemCallback()) {
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CameraViewHolder {
-        return CameraViewHolder(
-            ItemCameraBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CameraViewHolder {
+        val binding =
+            ItemCameraBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CameraViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CameraViewHolder, position: Int) {
@@ -30,17 +23,17 @@ class CameraAdapter : ListAdapter<Camera, CameraAdapter.CameraViewHolder>(Camera
 
     class CameraViewHolder(private val binding: ItemCameraBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun onBind(camera: Camera) {
             with(binding) {
-                tvCamera.text = camera.name
-                imgCamera.load(camera.snapshot)
+                binding.tvCamera.text = camera.name
+                binding.imgCamera.load(camera.snapshot)
             }
         }
     }
 }
 
-class CameraItemCallback : DiffUtil.ItemCallback<Camera>() {
+
+class DoorItemCallback : DiffUtil.ItemCallback<Camera>() {
     override fun areItemsTheSame(oldItem: Camera, newItem: Camera) = oldItem.id == newItem.id
     override fun areContentsTheSame(oldItem: Camera, newItem: Camera) = oldItem == newItem
 }

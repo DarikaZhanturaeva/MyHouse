@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id ("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -17,12 +16,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        buildConfigField(
-            "String",
-            "BASE_URL",
-            "\"http://cars.cprogroup.ru/api/rubetek/\""
-        )
     }
 
     buildTypes {
@@ -68,10 +61,6 @@ dependencies {
     //interceptor
     implementation(libs.logging.interceptor)
 
-    //Navigation
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-
     //ExpandableLayout
     implementation (libs.expandablelayout)
 
@@ -95,4 +84,9 @@ dependencies {
     //Koin
     implementation(libs.koin.android)
     //implementation (libs.koin.androidx.viewmodel)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 }

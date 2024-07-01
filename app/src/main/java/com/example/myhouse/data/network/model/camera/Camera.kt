@@ -1,4 +1,4 @@
-package com.example.myhouse.data.model.camera
+package com.example.myhouse.data.network.model.camera
 
 import com.google.gson.annotations.SerializedName
 

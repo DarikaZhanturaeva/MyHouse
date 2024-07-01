@@ -1,5 +1,6 @@
 package com.example.myhouse.ui.fragments.camera
 
+import androidx.lifecycle.Observer
 import com.example.myhouse.databinding.FragmentCameraBinding
 import com.example.myhouse.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -7,7 +8,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding::inflate) {
 
-    private val viewModel : CameraViewModel by viewModel()
+    private val viewModel: CameraViewModel by viewModel()
     private lateinit var cameraAdapter: CameraAdapter
 
     override fun setupViews() {
@@ -18,10 +19,12 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
         cameraAdapter = CameraAdapter()
         binding.rvCamera.adapter = cameraAdapter
     }
+
     override fun setupObservers() {
-        viewModel.getCamera().observe(viewLifecycleOwner) {
+        viewModel.getCamera().observe(viewLifecycleOwner, Observer {
             cameraAdapter.submitList(it)
-        }
+        })
+
     }
 
 }

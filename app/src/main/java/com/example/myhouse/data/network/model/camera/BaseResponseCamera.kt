@@ -1,10 +1,10 @@
-package com.example.myhouse.data.model.door
+package com.example.myhouse.data.network.model.camera
 
 import com.google.gson.annotations.SerializedName
 
-data class BaseResponseDoor(
+data class BaseResponseCamera(
     @SerializedName("success")
     val success: Boolean,
     @SerializedName("data")
-    val `data`: List<Data>
+    val `data`: Data
 )

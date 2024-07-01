@@ -35,8 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> ARG_DOOR
-                1 -> ARG_CAMERA
+                0 -> ARG_CAMERA
+                1 -> ARG_DOOR
                 else -> null
             }
         }.attach()

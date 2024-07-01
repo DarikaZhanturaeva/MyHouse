@@ -3,7 +3,7 @@ package com.example.myhouse.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.example.myhouse.data.api_service.ApiService
-import com.example.myhouse.data.model.camera.Camera
+import com.example.myhouse.data.network.model.camera.Camera
 import kotlinx.coroutines.Dispatchers
 
 class CameraRepository(private val api : ApiService) {
@@ -18,6 +18,4 @@ class CameraRepository(private val api : ApiService) {
             }
         }
     }
-
-
 }
