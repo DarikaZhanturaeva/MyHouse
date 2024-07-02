@@ -1,8 +1,12 @@
 package com.example.myhouse.data.network.model.camera
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "camera_data")
 data class Camera(
+    @PrimaryKey
     @SerializedName("name")
     val name: String,
     @SerializedName("snapshot")
@@ -12,7 +16,7 @@ data class Camera(
     @SerializedName("id")
     val id: Int,
     @SerializedName("favorites")
-    val favorites: Boolean,
+    var favorites: Boolean,
     @SerializedName("rec")
     val rec: Boolean
 )

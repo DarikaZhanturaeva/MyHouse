@@ -83,10 +83,12 @@ dependencies {
 
     //Koin
     implementation(libs.koin.android)
-    //implementation (libs.koin.androidx.viewmodel)
 
     //Room
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    kapt(libs.androidx.room.compiler)
+    kapt (libs.androidx.room.compiler)
+    implementation (libs.androidx.room.ktx)
+
+    //pull-to-refresh
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 }

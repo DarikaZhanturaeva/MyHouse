@@ -1,6 +1,7 @@
 package com.example.myhouse.ui.fragments.door
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -28,6 +29,11 @@ class DoorAdapter : ListAdapter<Data, DoorAdapter.DoorViewHolder>(DoorItemCallba
     override fun onBindViewHolder(holder: DoorViewHolder, position: Int) {
         holder.onBind(getItem(position))
     }
+    fun addToFavorites(position: Int) {
+        val item = getItem(position)
+        item.favorites = true
+        notifyItemChanged(position)
+    }
 
     class DoorViewHolder(private val binding: ItemDoorBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -35,6 +41,12 @@ class DoorAdapter : ListAdapter<Data, DoorAdapter.DoorViewHolder>(DoorItemCallba
         fun onBind(door: Data) {
             with(binding) {
                 tvDoor.text = door.name
+                itemView.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        imgFavorite.visibility = if (door.favorites) View.VISIBLE else View.GONE
+                    }
+                }
             }
         }
     }

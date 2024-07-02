@@ -1,6 +1,10 @@
 package com.example.myhouse.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.myhouse.data.api_service.ApiService
+import com.example.myhouse.data.local.dao.Dao
+import com.example.myhouse.data.local.database.AppDatabase
 import com.example.myhouse.utils.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -15,6 +19,8 @@ val networkModule = module {
     single { provideRetrofit(get()) }
     single { provideOkHttpClient(get()) }
     single { provideInterceptor() }
+    single { provideDao(get()) }
+    single { provideDatabase(get()) }
 }
 
 fun provideRetrofit(
@@ -40,3 +46,14 @@ fun provideInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().appl
 
 fun provideApiService(retrofit: Retrofit): ApiService =
     retrofit.create(ApiService::class.java)
+
+fun provideDao(database: AppDatabase): Dao {
+    return database.cameraDao()
+}
+fun provideDatabase(
+     context: Context
+) = Room.databaseBuilder(
+    context,
+    AppDatabase::class.java,
+    "home_data"
+).allowMainThreadQueries().build()

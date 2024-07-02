@@ -1,6 +1,7 @@
 package com.example.myhouse.ui.fragments.camera
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -16,6 +17,11 @@ class CameraAdapter : ListAdapter<Camera, CameraAdapter.CameraViewHolder>(DoorIt
             ItemCameraBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CameraViewHolder(binding)
     }
+    fun addToFavorites(position: Int) {
+        val item = getItem(position)
+        item.favorites = true
+        notifyItemChanged(position)
+    }
 
     override fun onBindViewHolder(holder: CameraViewHolder, position: Int) {
         holder.onBind(getItem(position))
@@ -27,6 +33,12 @@ class CameraAdapter : ListAdapter<Camera, CameraAdapter.CameraViewHolder>(DoorIt
             with(binding) {
                 binding.tvCamera.text = camera.name
                 binding.imgCamera.load(camera.snapshot)
+                itemView.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        imgFavorite.visibility = if (camera.favorites) View.VISIBLE else View.GONE
+                    }
+                }
             }
         }
     }
